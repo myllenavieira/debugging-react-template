@@ -1,12 +1,17 @@
 import React from 'react'
-import { Comentario } from './styles'
+import { Comentario } from './styled'
 
-export default function Comentario(props) {
+export const Comentarios = (props) => {
     return (
         <Comentario>
-            <input placeholder="Adicionar comentario" />
-            <button onclick={props.adicionaComentario}>Comentar Post</button>
-            <p>{props.post.comentario}</p>
+            <input 
+            placeholder="Adicionar comentario" 
+            value={props.comentario.comentario && props.comentario}
+            onChange={props.onChangeComentario}
+            />
+            <button onclick={props.adicionaComentario}>
+            Comentar Post</button>
+            <p>{props && props.comentario}</p>
         </Comentario>
     )
 }
