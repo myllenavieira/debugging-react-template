@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./App.css";
-import Post from "./componetns/Post";
+import "./index.css";
+import { Post } from "./components/Post/Post";
 
 //!! Os trechos comentados fazem parte do exercício final !!
 // !!!!! não descomentar ou modificar até lá !!!!!
@@ -8,7 +8,7 @@ import Post from "./componetns/Post";
 export default function App() {
   const [textoNovoPost, setTextoNovoPost] = useState("")
   const [post, setPost] = useState({})
-  // const [comentario, setComentario] = useState("")
+  const [comentario, setComentario] = useState("")
 
   const onChangeTextoNovoPost = (event) => {
     setTextoNovoPost(event.target.value);
@@ -34,23 +34,24 @@ export default function App() {
     // Altera o status de curtida do post
     const alterarCurtida = {
       ...post,
-      curtido: post.curtido
+      curtido: !post.curtido
     }
     setPost(alterarCurtida)
   }
 
   // Exercício final de debug. Descomentar só depois de finalizar o debug de post
-  /* function adicionaComentario() {
-    const addComentario ={
-     comentario: comentario
+  function adicionaComentario() {
+    const addComentario = {
+      ...comentario,
+      comentario: comentario
     }
     setComentario(addComentario)
-   }
+  }
 
-   const onChangeComentario = (e) => {
-     setComentario({e.target.valeu})
-   }
-*/
+  const onChangeComentario = (event) => {
+    setComentario(event.target.value)
+  }
+
 
   return (
     <div className="App">
@@ -65,10 +66,11 @@ export default function App() {
       <br />
       <Post
         post={post}
-        alteraCurtida={alterarCurtida}
+        alterarCurtida={alterarCurtida}
         apagarPost={apagarPost}
-        // onChangeComentarios={onChangeComentario}
-        // adicionaComentarios={adicionaComentario}
+        comentario={comentario.comentario}
+        onChangeComentario={onChangeComentario}
+        adicionaComentario={adicionaComentario}
       />
     </div>
   );
